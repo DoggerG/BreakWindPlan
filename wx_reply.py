@@ -121,9 +121,9 @@ def keyword_reply(msg, chat_type):
     elif text == '来段土味情话':
         info = love_live.get()
         msg.reply(info)
-    elif text.startswith('lc'):
-        info = train_time_info(text)
-        msg.reply(info)
+    # elif text.startswith('lc'):
+    #     info = train_time_info(text)
+    #     msg.reply(info)
     elif text == '来段彩虹屁':
         info = cai_hong_pi.get()
         msg.reply(info)
@@ -135,10 +135,9 @@ def keyword_reply(msg, chat_type):
                '4.当日票房：看个票房\r\n' \
                '5.土味情话：来段土味情话\r\n' \
                '6.听彩虹屁：来段彩虹屁\r\n' \
-               '7.列车时刻：lc车次\r\n' \
-               '8.1.头像加CSDN水印：爱上csdn\r\n' \
-               '8.2.头像加游侠客水印：爱上游侠客\r\n' \
-               '8.3.头像加海贼王水印：爱上海贼王'
+               '7.1.头像加CSDN水印：爱上csdn\r\n' \
+               '7.2.头像加游侠客水印：爱上游侠客\r\n' \
+               '7.3.头像加海贼王水印：爱上海贼王'
         msg.reply(info)
 
 
