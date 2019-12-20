@@ -93,7 +93,11 @@ def get_msg_chinese_type(msg_type):
 def keyword_reply(msg, chat_type):
     """关键字回复"""
     text = msg.text.strip().lower()
-    if text.startswith('tq'):
+    if text.startswith('tp'):
+        place = text.lstrip('tp').strip()
+        if place:
+            msg.reply(f"传送到{place}失败")
+    elif text.startswith('tq'):
         info = tq_info(text)
         msg.reply(info)
     # elif text.startswith('dt'):

@@ -47,12 +47,12 @@ def get():
         return '暂查不到黄历'
     content = list()
     jie_ri = ','.join(hl['festivalList'])
-    content.append('今天 {}年{}月{}日 {}'.format(hl['year'], hl['month'], hl['day'], get_week_day()))
-    content.append('农历 {}月{}'.format(hl['cnmonth'], hl['cnday']))
+    content.append('今天: {}年{}月{}日 {}'.format(hl['year'], hl['month'], hl['day'], get_week_day()))
+    content.append('农历: {}月{}'.format(hl['cnmonth'], hl['cnday']))
     if jie_ri:
-        content.append('节日 {}'.format(jie_ri))
-    content.append('适宜 {}'.format(hl['suit']))
-    content.append('忌讳 {}'.format(hl['taboo']))
+        content.append('节日: {}'.format(jie_ri))
+    content.append('适宜: {}'.format(hl['suit']))
+    content.append('忌讳: {}'.format(hl['taboo']))
     return '\r\n'.join(content)
 
 

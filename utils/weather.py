@@ -25,9 +25,9 @@ def get(city_name):
             feng_li = re.findall(r".*<!\[CDATA\[(.*)\]\]>.*", a["forecast"][i]['fengli'])[0]
             info.append('{0} {1}'.format(a["forecast"][i]['fengxiang'], feng_li))
 
-            high_list = re.findall(r'\d+(?:\.\d+)?', a["forecast"][i]['high'])
+            high_list = re.findall(r'[+-]?\d+(?:\.\d+)?', a["forecast"][i]['high'])
             high = high_list[0] if len(high_list) > 0 else '未知'
-            low_list = re.findall(r'\d+(?:\.\d+)?', a["forecast"][i]['low'])
+            low_list = re.findall(r'[+-]?\d+(?:\.\d+)?', a["forecast"][i]['low'])
             low = low_list[0] if len(low_list) > 0 else '未知'
             info.append('温度：{0}℃/{1}℃'.format(low, high))
             info.append("-----------------------------")
@@ -93,5 +93,5 @@ def get_timing(city_name):
 
 
 if __name__ == '__main__':
-    result = get('南 京')
+    result = get('南京')
     print(result)
