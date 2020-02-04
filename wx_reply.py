@@ -14,6 +14,7 @@ import utils.maoyan_movie as movie
 import utils.love_live as love_live
 import utils.train_time as train_time
 import utils.cai_hong_pi as cai_hong_pi
+import utils.yi_qing as yi_qing
 
 
 # 好友功能
@@ -100,6 +101,9 @@ def keyword_reply(msg, chat_type):
     elif text.startswith('tq'):
         info = tq_info(text)
         msg.reply(info)
+    elif text.startswith('yq'):
+        info = yi_qing_info(text)
+        msg.reply(info)
     # elif text.startswith('dt'):
     #     info = dt_info(text, 'dt')
     #     return msg.reply(info)
@@ -133,6 +137,7 @@ def keyword_reply(msg, chat_type):
         msg.reply(info)
     elif text == '小布':
         info = '根据以下提示回复相应内容：\r\n' \
+               '0.实时疫情：yq省份\r\n' \
                '1.查询天气：tq地名\r\n' \
                '2.查看黄历：看个黄历\r\n' \
                '3.垃圾分类：lj垃圾名\r\n' \
@@ -212,5 +217,13 @@ def train_time_info(text):
     lc = text.lstrip('lc').strip()
     if len(lc) > 0:
         info = train_time.get(lc)
+        return info
+    return None
+
+
+def yi_qing_info(text):
+    yq = text.lstrip('yq').strip()
+    if len(yq) > 0:
+        info = yi_qing.get(yq)
         return info
     return None
