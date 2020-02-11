@@ -12,10 +12,6 @@ def get_ncov_data() -> dict:
     return result
 
 
-def get_daily_data() -> list:
-    return get_ncov_data()['chinaDayList']
-
-
 def get(province_name) -> str:
     all = get_ncov_data()
     china_total = all['chinaTotal']
@@ -23,10 +19,10 @@ def get(province_name) -> str:
     info = list()
     info.append(f"截至{all['lastUpdateTime']}")
     info.append(f"全国：")
-    info.append(f" 确诊{china_total['confirm']}[+{china_today['confirm']}]")
-    info.append(f" 疑似{china_total['suspect']}[+{china_today['suspect']}]")
-    info.append(f" 治愈{china_total['heal']}[+{china_today['heal']}]")
-    info.append(f" 死亡{china_total['dead']}[+{china_today['dead']}]")
+    info.append(f" 确诊{china_total['confirm']}[{adjust_data(china_today['confirm'])}]")
+    info.append(f" 疑似{china_total['suspect']}[{adjust_data(china_today['suspect'])}]")
+    info.append(f" 治愈{china_total['heal']}[{adjust_data(china_today['heal'])}]")
+    info.append(f" 死亡{china_total['dead']}[{adjust_data(china_today['dead'])}]")
     info.append("-----------------------------")
 
     # 第一层：国家 get China data
@@ -43,6 +39,7 @@ def get(province_name) -> str:
 
     info.append("-----------------------------")
     info.append('+:新增人数,已包含在总人数中.')
+    info.append('-:减少人数,已包含在总人数中.')
     info.append('这些都不是数字,而是真正的人.')
     info.append('注意保护好自己，爱你们.')
     info.append('中国加油！武汉加油！')
@@ -53,27 +50,34 @@ def format_data(name, total, today, spe_str=' '):
     message_list = list()
     message = f"确诊{total['confirm']}"
     if today['confirm']:
-        message += f"[+{today['confirm']}]"
+        message += f"[{adjust_data(today['confirm'])}]"
     message_list.append(message)
 
     # message = f"疑似{total['suspect']}"
     # if today['suspect']:
-    #     message += f"[+{today['suspect']}]"
+    #     message += f"[{adjust_data(today['suspect'])}]"
     # message_list.append(message)
 
     message = f"治愈{total['heal']}"
     if today['heal']:
-        message += f"[+{today['heal']}]"
+        message += f"[{adjust_data(today['heal'])}]"
     message_list.append(message)
 
     message = f"死亡{total['dead']}"
     if today['dead']:
-        message += f"[+{today['dead']}]"
+        message += f"[{adjust_data(today['dead'])}]"
     message_list.append(message)
 
     return f"{name}:\r\n {spe_str.join(message_list)}"
 
 
+def adjust_data(num):
+    if num > 0:
+        return f"+{num}"
+    else:
+        return num
+
+
 if __name__ == '__main__':
-    result = get('江苏省')
+    result = get('江苏')
     print(result)

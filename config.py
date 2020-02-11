@@ -50,7 +50,7 @@ listen_sharing_groups = '游侠客全球领队颜值担当' \
 # 定时提醒：每天几点几分
 timing_hour = 7
 timing_minute = 30
-timing_remind_groups = '万里阳光-户外休闲社|游侠客南京站领队群' \
+timing_remind_groups = '游侠客南京站领队群' \
                        '|长营社区党建群' \
                        '|冲鸭!每天学点Python-56' \
                        '|冲鸭!每天学点Python-211' \
