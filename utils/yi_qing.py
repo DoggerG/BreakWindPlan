@@ -38,10 +38,9 @@ def get(province_name) -> str:
             info.append(format_data(city['name'], city['total'], city['today']))
 
     info.append("-----------------------------")
-    info.append('+:新增人数,已包含在总人数中.')
-    info.append('-:减少人数,已包含在总人数中.')
+    info.append('[]:人数变化,已包含在总人数中.')
     info.append('这些都不是数字,而是真正的人.')
-    info.append('注意保护好自己，爱你们.')
+    info.append('下次见面之前，请照顾好自己.')
     info.append('中国加油！武汉加油！')
     return '\r\n'.join(info)
 
