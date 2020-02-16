@@ -14,15 +14,15 @@ def get_ncov_data() -> dict:
 
 def get(province_name) -> str:
     all = get_ncov_data()
-    china_total = all['chinaTotal']
-    china_today = all['chinaAdd']
+    china_total = all.get('chinaTotal', 0)
+    china_today = all.get('chinaAdd', 0)
     info = list()
     info.append(f"截至{all['lastUpdateTime']}")
     info.append(f"全国：")
-    info.append(f" 确诊{china_total['confirm']}[{adjust_data(china_today['confirm'])}]")
-    info.append(f" 疑似{china_total['suspect']}[{adjust_data(china_today['suspect'])}]")
-    info.append(f" 治愈{china_total['heal']}[{adjust_data(china_today['heal'])}]")
-    info.append(f" 死亡{china_total['dead']}[{adjust_data(china_today['dead'])}]")
+    info.append(f" 确诊{china_total.get('confirm', 0)}[{adjust_data(china_today.get('confirm', 0))}]")
+    info.append(f" 疑似{china_total.get('suspect', 0)}[{adjust_data(china_today.get('suspect', 0))}]")
+    info.append(f" 治愈{china_total.get('heal', 0)}[{adjust_data(china_today.get('heal', 0))}]")
+    info.append(f" 死亡{china_total.get('dead', 0)}[{adjust_data(china_today.get('dead', 0))}]")
     info.append("-----------------------------")
 
     # 第一层：国家 get China data
@@ -47,23 +47,23 @@ def get(province_name) -> str:
 
 def format_data(name, total, today, spe_str=' '):
     message_list = list()
-    message = f"确诊{total['confirm']}"
-    if today['confirm']:
+    message = f"确诊{total.get('confirm', 0)}"
+    if today.get('confirm', 0):
         message += f"[{adjust_data(today['confirm'])}]"
     message_list.append(message)
 
-    # message = f"疑似{total['suspect']}"
-    # if today['suspect']:
+    # message = f"疑似{total.get('suspect', 0)}"
+    # if today.get('suspect', 0):
     #     message += f"[{adjust_data(today['suspect'])}]"
     # message_list.append(message)
 
-    message = f"治愈{total['heal']}"
-    if today['heal']:
+    message = f"治愈{total.get('heal', 0)}"
+    if today.get('heal', 0):
         message += f"[{adjust_data(today['heal'])}]"
     message_list.append(message)
 
-    message = f"死亡{total['dead']}"
-    if today['dead']:
+    message = f"死亡{total.get('dead', 0)}"
+    if today.get('dead', 0):
         message += f"[{adjust_data(today['dead'])}]"
     message_list.append(message)
 
